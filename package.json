@@ -1,0 +1,7 @@
+{
+    "scripts": {
+        "start": "concurrently --raw --kill-others \"node ./server/bin/www\" \"npm --prefix ./client start\"",
+        "server": "node ./server/bin/www",
+        "client": "npm --prefix ./client start"
+    }
+}
