@@ -7,6 +7,12 @@ After downloading and unzipping, in each folder (root, client, server) run the f
 npm install
 ```
 
+## Setting Up The Database
+In the db directory, run
+```
+python db_setup.py
+```
+This will drop all tables in `teamolympic.db`, create them, and populate them.
 ## Usage
 
 Open a terminal in the root folder. Individual npm scripts have been set-up that can be run from the root folder.
