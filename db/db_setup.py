@@ -23,7 +23,7 @@ def make_db():
         MovieID INTEGER NOT NULL,
         MovieTitle VARCHAR(255) NOT NULL,
         MovieDirector VARCHAR(255),
-        MovieLength VARCHAR(255) NOT NULL,
+        MovieLength INTEGER NOT NULL,
         MovieGenre VARCHAR(255),
         PRIMARY KEY (MovieID)
     )
@@ -58,7 +58,6 @@ def populate_users():
 
     for row in cur.execute("SELECT * FROM Users ORDER BY UserID"):
         print(row)
-
 
 def populate_movies():
     with open('./resources/movies_cleaned.csv', newline = '') as csvfile:
@@ -102,6 +101,15 @@ make_db()
 populate_users()
 populate_movies()
 populate_user_watches_movie()
+
+# test query
+# for row in cur.execute("""
+# SELECT U.FirstName, U.LastName, M.MovieTitle, UWM.DurationWatched, M.MovieLength
+# FROM Users as U 
+# INNER JOIN UserWatchesMovie as UWM ON U.UserID = UWM.UserID
+# INNER JOIN Movies as M ON UWM.MovieID = M.MovieID
+# """):
+#     print(row)
 
 con.commit()
 con.close()
