@@ -62,6 +62,17 @@ def make_db():
     )
     ''')
 
+    cur.execute('DROP TABLE IF EXISTS Friends')
+    cur.execute('''
+    CREATE TABLE Friends(
+        UserID1 INTEGER NOT NULL,
+        UserID2 INTEGER NOT NULL,
+        Time DATE DEFAULT (datetime('now','localtime')),
+        FOREIGN KEY (UserID1) REFERENCES Users(UserID),
+        FOREIGN KEY (UserID2) REFERENCES Users(UserID)
+    )
+    ''')
+
 def populate_users():
     with open('./resources/names.csv', newline = '') as csvfile:
         reader = csv.reader(csvfile)
@@ -78,8 +89,8 @@ def populate_users():
 
     cur.executemany("INSERT INTO Users VALUES (?, ?, ?)", reorderedUsers)
 
-    for row in cur.execute("SELECT * FROM Users ORDER BY UserID"):
-        print(row)
+    # for row in cur.execute("SELECT * FROM Users ORDER BY UserID"):
+    #     print(row)
 
 def populate_movies():
     with open('./resources/movies_cleaned.csv', newline = '') as csvfile:
@@ -97,8 +108,8 @@ def populate_movies():
 
     cur.executemany("INSERT INTO Movies VALUES (?, ?, ?, ?, ?)", moviesList)
 
-    for row in cur.execute("SELECT * FROM Movies ORDER BY MovieID"):
-        print(row)
+    # for row in cur.execute("SELECT * FROM Movies ORDER BY MovieID"):
+    #     print(row)
 
 def populate_user_watches_movie():
     with open('./resources/userViews.csv', newline = '') as csvfile:
@@ -116,8 +127,8 @@ def populate_user_watches_movie():
 
     cur.executemany("INSERT INTO UserWatchesMovie VALUES (?, ?, ?)", reorderedViews)
 
-    for row in cur.execute("SELECT * FROM UserWatchesMovie ORDER BY UserID"):
-        print(row)
+    # for row in cur.execute("SELECT * FROM UserWatchesMovie ORDER BY UserID"):
+    #     print(row)
 
 def populate_comments():
     with open('./resources/comment.csv', newline = '') as csvfile:
@@ -154,9 +165,27 @@ def populate_ratings():
 
     cur.executemany("INSERT INTO Ratings VALUES (?, ?, ?)", ratings)
 
-    for row in cur.execute("SELECT * FROM Ratings ORDER BY UserID"):
-        print(row)
+    # for row in cur.execute("SELECT * FROM Ratings ORDER BY UserID"):
+    #     print(row)
 
+def populate_friends():
+    with open('./resources/friendList.csv', newline = '') as csvfile:
+        reader = csv.reader(csvfile)
+        line_count = 0
+        friends = []
+        for row in reader:
+            if line_count == 0:
+                print(f'Columns: {", ".join(row)}')
+            else:
+                if ("user_id" not in row):
+                    friend = [int(row[0]), int(row[1]), None]
+                    friends.append(friend)
+            line_count += 1
+
+    cur.executemany("INSERT INTO Friends VALUES (?, ?, ?)", friends)
+
+    # for row in cur.execute("SELECT * FROM Friends ORDER BY UserID1"):
+    #     print(row)
 
 def show_name_movie_duration_length():
     for row in cur.execute("""
@@ -185,6 +214,16 @@ def show_name_movie_rating():
     """):
         print(row)
 
+def show_friends():
+    # This might not be the right way to query this
+    # Please confirm
+    for row in cur.execute("""
+    SELECT U1.FirstName, U1.LastName, U2.FirstName, U2.LastName
+    FROM Friends as F
+    JOIN Users as U1 ON F.UserID1 = U1.UserID
+    JOIN Users as U2 ON F.UserID2 = U2.UserID
+    """):
+        print(row)
 make_db()
 
 populate_users()
@@ -192,10 +231,12 @@ populate_movies()
 populate_user_watches_movie()
 populate_comments()
 populate_ratings()
+populate_friends()
 
 show_name_movie_duration_length()
 show_name_movie_comment()
 show_name_movie_rating()
+show_friends()
 
 con.commit()
 con.close()
