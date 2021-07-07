@@ -3,5 +3,9 @@
         "start": "concurrently --raw --kill-others \"node ./server/bin/www\" \"npm --prefix ./client start\"",
         "server": "node ./server/bin/www",
         "client": "npm --prefix ./client start"
+    },
+    "dependencies": {
+        "md5": "^2.3.0",
+        "sqlite3": "^5.0.2"
     }
 }

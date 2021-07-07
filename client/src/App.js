@@ -8,6 +8,7 @@ class App extends Component {
         this.state = { apiResponse: "" };
     }
 
+    /* Display User Data */
     getUser(id) {
         fetch(`http://localhost:9000/user/${id}`)
             .then(res => res.text())
