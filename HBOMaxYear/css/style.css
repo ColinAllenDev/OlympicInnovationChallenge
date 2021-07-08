@@ -2,6 +2,9 @@ html {
     background-image: url('../img/bg.png');
     background-size: cover;
     background-repeat: no-repeat;
+    /* I used this bc the image was kinda pixelated not sure about colors tho? */
+    background-image: linear-gradient(to bottom right, #510acc, #973cb0);
+    
 }
 
 body {
@@ -22,6 +25,7 @@ body {
 
 .greetName {
     font-size: 300%;
+    font-family: 'Gilroy-Bold', sans-serif;
 }
 .piece {
     display: flex;
