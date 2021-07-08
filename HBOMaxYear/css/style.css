@@ -16,6 +16,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    line-height: 0cm;
+    font-family: 'Gilroy-Light', sans-serif;
 }
 
 .greetName {
