@@ -18,8 +18,11 @@ body {
     justify-content: center;
 }
 
-.test {
-    background-color: cyan;
+.piece {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
 }
 
 .hbomax {
