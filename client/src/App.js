@@ -9,15 +9,16 @@ class App extends Component {
     }
 
     /* Display User Data */
+    // This is an example query, (Last name and first names were switched up in the database)
     getUser(id) {
-        fetch(`http://localhost:9000/user/${id}`)
-            .then(res => res.text())
-            .then(res => this.setState({apiResponse : res}))
+        fetch(`http://localhost:9000/api/users/${id}`)
+            .then(res => res.json())
+            .then(res => this.setState({apiResponse : res.rows[0].LastName + " " + res.rows[0].FirstName}))
             .catch(err => err)
     }
     
     componentDidMount() {
-        this.getUser(101);
+        this.getUser(0);
     }
 
     render() {
@@ -27,7 +28,7 @@ class App extends Component {
                     <img src={logo} className="App-logo" alt="logo" />
                     <h1 className="App-title">Welcome to React</h1>
                 </header>
-                <p className="App-intro">{this.state.apiResponse}</p>
+                <p className="App-intro">{`Hello, ${this.state.apiResponse}`}</p>
             </div>
         );
     }

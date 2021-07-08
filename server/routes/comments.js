@@ -5,15 +5,16 @@ const db = require('../db.js');
 
 var database = new db('./db/teamolympic.db');
 
-/* Get all users info */
 router.get("/", (req, res, next) => {
-  database.Query("SELECT * FROM Users", res);
+  database.Query(`SELECT * FROM Comments`, res);
 });
 
-/* Get user info by ID */
 router.get("/:id", (req, res, next) => {
-  database.Query(`SELECT * FROM Users WHERE UserId=${req.params.id}`, res);
+  database.Query(`SELECT * FROM Comments WHERE UserID=${req.params.id}`, res);
 });
 
+router.get("/movie/:id", (req, res, next) => {
+  database.Query(`SELECT * FROM Comments WHERE MovieID=${req.params.id}`, res);
+});
 
 module.exports = router
