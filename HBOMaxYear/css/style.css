@@ -18,13 +18,12 @@ body {
     justify-content: center;
 }
 
+.greetName {
+    font-size: 300%;
+}
 .piece {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
-}
 
-.hbomax {
-    font-size: 300%;
 }
