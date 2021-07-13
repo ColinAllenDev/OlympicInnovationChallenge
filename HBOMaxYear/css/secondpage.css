@@ -1,0 +1,34 @@
+.leftWords{
+    display: block;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.rightWords{
+    display: block;
+    flex-direction: column;
+    justify-content: right;
+}
+
+.rightrow{
+    display: flex;
+    justify-content: right;
+}
+
+.leftrow{
+    display: flex;
+    justify-content: left;
+}
+
+h1{
+    font-size: 350%;
+    font-family: 'Gilroy-Light', sans-serif;
+}
+
+.coverArt{
+    max-height: 250px;
+}
+
+#topShow{
+    max-height: 350px;
+}

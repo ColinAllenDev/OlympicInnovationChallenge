@@ -3,7 +3,7 @@ html {
     background-size: cover;
     background-repeat: no-repeat;
     /* I used this bc the image was kinda pixelated not sure about colors tho? */
-    background-image: linear-gradient(to bottom right, #510acc, #973cb0);
+    background-image: linear-gradient(to bottom right, #4000af, #973cb0);
     
 }
 
@@ -32,4 +32,28 @@ body {
     flex-direction: column;
     justify-content: center;
 
+}
+
+.toptable {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 1em;
+    column-gap: 2em;
+}
+
+.toptable img {
+    width:300px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.sharetable {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 1em;
+    column-gap: 2em;
+}
+
+.shareimg {
+    max-height: 50px;
 }
