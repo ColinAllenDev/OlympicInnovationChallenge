@@ -11,38 +11,59 @@
     <style>
       @import url('http://fonts.cdnfonts.com/css/gilroy-bold');
     </style>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">  
+</script>  
+<script type="text/javascript" src="./jquery-3.6.0.min.js">  </script>
+<script>
+  $(window).scroll(function() {
+      $('.fade-in').each(function() {
+          var top_of_element = $(this).offset().top;
+          var bottom_of_element = $(this).offset().top + $(this).outerHeight();
+          var bottom_of_screen = $(window).scrollTop() + $(window).innerHeight();
+          var top_of_screen = $(window).scrollTop();
+
+          if ((bottom_of_screen > top_of_element) && (top_of_screen < bottom_of_element) && !$(this).hasClass('is-visible')) {
+              $(this).addClass('is-visible');
+          }
+      });
+  });
+</script>
+
+
+
 </head>
 <body>
     <div class = "container">
         <div class="piece">
-          <div class="leftrow">
+          <div class="leftrow fade-in">
             <h1 id="line1" class="leftWords">A lot happened in 2021...</h1>
           </div>
-          <div class="rightrow">
+          <div class="rightrow fade-in">
             <h1 id="line2" class="rightWords">...here are the<br>shows and movies<br>that got you through</h1>
           </div>
-          <div class="leftrow">
+          <div class="leftrow fade-in">
             <h1 id="line3" class="leftWords">In 2021, you discovered...</h1>
           </div>
-          <div class="rightrow">
+          <div class="rightrow fade-in">
               <img id="firstMovie" class="coverArt" src="./img/image 3.png">
             <h1 id="line4" class="rightWords">28 new movies,</h1>
           </div>
-          <div class="row">
+          <div class="row fade-in">
             <h1></h1>
            </div>
-          <div class="leftrow">
+          <div class="leftrow fade-in">
             <h1 id="line5" class="leftWords">10 new shows,</h1>
             <img id="firstShow" class="coverArt" src="./img/image 4.png">
           </div>
-           <div class="row">
+           <div class="row fade-in">
             <h1 id="line6" class="centerWords">that spanned a total of 12 genres.</h1>
            </div>
         </div>
-        <div class="row">
+        <div class="row fade-in">
          <h1></h1>
         </div>
-           <div class="leftrow">
+           <div class="leftrow fade-in">
             <h1 id="line7" class="leftWords">In fact,<br>you were part of<br>the top 1% of<br>Pretty Little Liars<br>watchers this year.</h1>
             <img id="topShow" src="./img/image 5.png">
            </div>
